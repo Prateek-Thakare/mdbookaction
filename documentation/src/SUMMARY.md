@@ -15,7 +15,7 @@
    - [Mysterious Boxes](setup/mysterious_boxes.md)
    - [Network Hunt](setup/network-hunt.md)
 
-- [Networking Basics22](networking/index.md)
+- [Networking Basics](networking/index.md)
    - [Network Layers](networking/layers.md)
    - [Socket Interface](networking/socket-interface.md)
    - [Packet Headers](networking/packet-headers.md)
