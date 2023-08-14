@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Creating Packets - The Art of Packet Crafting with Scapy</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><li class="part-title">The Art of Packet Crafting with Scapy</li><li class="chapter-item expanded "><a href="../intro/index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../intro/workshop-overview.html"><strong aria-hidden="true">1.1.</strong> Workshop Overview</a></li><li class="chapter-item expanded "><a href="../intro/license.html"><strong aria-hidden="true">1.2.</strong> License</a></li><li class="chapter-item expanded "><a href="../intro/bigger_picture.html"><strong aria-hidden="true">1.3.</strong> Bigger Picture</a></li><li class="chapter-item expanded "><a href="../intro/trainers.html"><strong aria-hidden="true">1.4.</strong> Trainers</a></li><li class="chapter-item expanded "><a href="../intro/disclaimer.html"><strong aria-hidden="true">1.5.</strong> Disclaimer</a></li><li class="chapter-item expanded "><a href="../intro/feedback.html"><strong aria-hidden="true">1.6.</strong> Feedback</a></li></ol></li><li class="chapter-item expanded "><a href="../setup/index.html"><strong aria-hidden="true">2.</strong> Lab Setup</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../setup/mysterious_boxes.html"><strong aria-hidden="true">2.1.</strong> Mysterious Boxes</a></li><li class="chapter-item expanded "><a href="../setup/network-hunt.html"><strong aria-hidden="true">2.2.</strong> Network Hunt</a></li></ol></li><li class="chapter-item expanded "><a href="../networking/index.html"><strong aria-hidden="true">3.</strong> Networking Basics</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../networking/layers.html"><strong aria-hidden="true">3.1.</strong> Network Layers</a></li><li class="chapter-item expanded "><a href="../networking/socket-interface.html"><strong aria-hidden="true">3.2.</strong> Socket Interface</a></li><li class="chapter-item expanded "><a href="../networking/packet-headers.html"><strong aria-hidden="true">3.3.</strong> Packet Headers</a></li><li class="chapter-item expanded "><a href="../networking/arp.html"><strong aria-hidden="true">3.4.</strong> ARP Protocol</a></li></ol></li><li class="chapter-item expanded "><a href="../python/index.html"><strong aria-hidden="true">4.</strong> Python</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../python/python_concepts.html"><strong aria-hidden="true">4.1.</strong> Python Concepts</a></li></ol></li><li class="chapter-item expanded "><a href="../scapy/index.html"><strong aria-hidden="true">5.</strong> Scapy</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../scapy/scapy_intro.html"><strong aria-hidden="true">5.1.</strong> Scapy Intro</a></li><li class="chapter-item expanded "><a href="../scapy/scapy_modes.html"><strong aria-hidden="true">5.2.</strong> Scapy Modes</a></li><li class="chapter-item expanded "><a href="../scapy/exploring_scapy.html"><strong aria-hidden="true">5.3.</strong> Exploring Scapy</a></li><li class="chapter-item expanded "><a href="../scapy/creating_packets.html" class="active"><strong aria-hidden="true">5.4.</strong> Creating Packets</a></li><li class="chapter-item expanded "><a href="../scapy/inspecting_packets.html"><strong aria-hidden="true">5.5.</strong> Inspecting Packets</a></li><li class="chapter-item expanded "><a href="../scapy/send_revieve_packets.html"><strong aria-hidden="true">5.6.</strong> Send & Recieve Packets</a></li><li class="chapter-item expanded "><a href="../scapy/import_export_data.html"><strong aria-hidden="true">5.7.</strong> Import & Export Data</a></li><li class="chapter-item expanded "><a href="../scapy/sniffing.html"><strong aria-hidden="true">5.8.</strong> Sniffing</a></li></ol></li><li class="chapter-item expanded "><a href="../recon/index.html"><strong aria-hidden="true">6.</strong> Network Recon</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../recon/host_discovery.html"><strong aria-hidden="true">6.1.</strong> Host Discovery</a></li><li class="chapter-item expanded "><a href="../recon/service_discovery.html"><strong aria-hidden="true">6.2.</strong> Service Discovery</a></li><li class="chapter-item expanded "><a href="../recon/os_detection.html"><strong aria-hidden="true">6.3.</strong> OS Detection</a></li><li class="chapter-item expanded "><a href="../recon/promisc.html"><strong aria-hidden="true">6.4.</strong> Detect Promisc Mode</a></li><li class="chapter-item expanded "><a href="../recon/pcap_analysis.html"><strong aria-hidden="true">6.5.</strong> PCAP Analysis</a></li><li class="chapter-item expanded "><a href="../recon/traceroute.html"><strong aria-hidden="true">6.6.</strong> Traceroute</a></li></ol></li><li class="chapter-item expanded "><a href="../attacks/index.html"><strong aria-hidden="true">7.</strong> Network Attacks</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../attacks/cam_overflow.html"><strong aria-hidden="true">7.1.</strong> CAM Overflow Attack</a></li><li class="chapter-item expanded "><a href="../attacks/arp_spoofing.html"><strong aria-hidden="true">7.2.</strong> ARP Spoofing</a></li></ol></li><li class="chapter-item expanded "><a href="../libraries/index.html"><strong aria-hidden="true">8.</strong> Libraries</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../libraries/netaddr.html"><strong aria-hidden="true">8.1.</strong> netaddr</a></li><li class="chapter-item expanded "><a href="../libraries/netifaces.html"><strong aria-hidden="true">8.2.</strong> netifaces</a></li></ol></li><li class="chapter-item expanded "><a href="../exercises/index.html"><strong aria-hidden="true">9.</strong> Exercises</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../exercises/misc.html"><strong aria-hidden="true">9.1.</strong> Misc Exercises</a></li><li class="chapter-item expanded "><a href="../exercises/network_hunt.html"><strong aria-hidden="true">9.2.</strong> Network Hunt</a></li></ol></li><li class="chapter-item expanded "><a href="../misc/references.html"><strong aria-hidden="true">10.</strong> References</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">The Art of Packet Crafting with Scapy</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="creating-packets"><a class="header" href="#creating-packets">Creating Packets</a></h1>
+<h2 id="creating-a-packet"><a class="header" href="#creating-a-packet">Creating a packet</a></h2>
+<ul>
+<li>Scapy packet creation is consistent with layered approach in networking</li>
+<li>The basic building block of a packet is a layer, and a whole packet is built by stack- ing layers on top of one another</li>
+<li>In scapy, packets are constructed by defining packet headers for each protocol at different layers of TCP/IP and then stacking these layers in order</li>
+<li>To create a DNS query, you need to build Ether(sometimes optional), IP,UDP headers and stack them using / operator</li>
+</ul>
+<h2 id="creating-packet-in-one-line"><a class="header" href="#creating-packet-in-one-line">Creating packet in one line</a></h2>
+<pre><code>&gt;&gt;&gt; packet = Ether()/IP(dst='8.8.8.8')/TCP(dport=53,flags='S')
+
+    A full-fledged DNS request packet
+
+&gt;&gt;&gt; dns_query = IP(dst=&quot;8.8.8.8&quot;)/UDP(dport=53)/DNS(rd=1,qd=DNSQR(qname=&quot;null.co.in&quot;))
+&gt;&gt;&gt; 
+&gt;&gt;&gt; dns_query
+&lt;IP  frag=0 proto=udp dst=8.8.8.8 |&lt;UDP  sport=domain dport=domain |&lt;DNS  rd=1 qd=&lt;DNSQR  qname='null.co.in' |&gt; |&gt;&gt;&gt;
+</code></pre>
+<h2 id="create-each-layer-individually-and-stack-them-using--operator"><a class="header" href="#create-each-layer-individually-and-stack-them-using--operator">Create each layer individually and stack them using ‘/’ operator</a></h2>
+<pre><code>&gt;&gt;&gt; l2 = Ether()
+&gt;&gt;&gt; l3 = IP(dst='8.8.8.8/30')
+&gt;&gt;&gt; l4 = TCP(dport=53, flags = 'S')
+&gt;&gt;&gt; packet = l2/l3/l4
+</code></pre>
+<h2 id="scapy-ip-notations"><a class="header" href="#scapy-ip-notations">Scapy IP notations</a></h2>
+<p>Scapy accepts plain dotted-quad IP notation, CIDR notation, hostnames.</p>
+<pre><code>&gt;&gt;&gt; packet = IP(dst = '8.8.8.8')
+&gt;&gt;&gt; 
+&gt;&gt;&gt; packet = IP(dst = 'scanme.nmap.org')
+&gt;&gt;&gt; 
+&gt;&gt;&gt; packet = IP(dst = '8.8.8.8/30')
+# Above line created 4 packets in one statements implicitly.
+# Using list comprehensions to view all the packets.
+&gt;&gt;&gt; [a for a in packet]
+[&lt;IP  dst=8.8.8.8 |&gt;, &lt;IP  dst=8.8.8.9 |&gt;, &lt;IP  dst=8.8.8.10 |&gt;, &lt;IP  dst=8.8.8.11 |&gt;]
+
+&gt;&gt;&gt; packet = IP(dst = 'egadz.metasploit.com/30')
+</code></pre>
+<h2 id="creating-set-of-packets"><a class="header" href="#creating-set-of-packets">Creating set of packets</a></h2>
+<p>We can create a set of packets implicitly using Scapy.</p>
+<pre><code>pkts = IP(ttl=[1,3,5,(7,10)])/TCP()
+</code></pre>
+<p>For inspecting set of packets you can use list comprehensions</p>
+<pre><code>[pkt for pkt in pkts]
+
+&gt;&gt;&gt; [pkt for pkt in pkts]
+[&lt;IP  frag=0 ttl=1 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=3 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=5 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=7 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=8 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=9 proto=tcp |&lt;TCP  |&gt;&gt;, &lt;IP  frag=0 ttl=10 proto=tcp |&lt;TCP  |&gt;&gt;]
+&gt;&gt;&gt;
+&gt;&gt;&gt; from pprint import pprint
+&gt;&gt;&gt; pprint([pkt for pkt in pkts])
+[&lt;IP  frag=0 ttl=1 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=3 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=5 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=7 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=8 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=9 proto=tcp |&lt;TCP  |&gt;&gt;,
+ &lt;IP  frag=0 ttl=10 proto=tcp |&lt;TCP  |&gt;&gt;]
+</code></pre>
+<pre><code>&gt;&gt;&gt; IP(dst=&quot;192.168.*.1-10&quot;)/TCP(dport=(0,1024))
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../scapy/exploring_scapy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../scapy/inspecting_packets.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../scapy/exploring_scapy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../scapy/inspecting_packets.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
