@@ -1,4 +1,4 @@
 # Exercises
 
 - [Misc Exercises](misc.md)
-- [Network Hunt](network_hunt.md)
+- [Network Hunt new ](network_hunt.md)
